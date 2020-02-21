@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\node_modules\\@syncfusion\\ej2-calendars",
+    "\\node_modules\\@syncfusion\\ej2-calendars\\styles",
+    "\\node_modules\\@syncfusion\\ej2-calendars\\styles\\calendar",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\request",
+    "\\src\\app\\request\\disponibilities",
+    "\\src\\app\\_services"
+  ],
+  "SelectedNode": "\\src\\app\\app.component.ts",
+  "PreviewInSolutionExplorer": false
+}

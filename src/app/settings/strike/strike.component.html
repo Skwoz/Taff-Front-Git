@@ -1,0 +1,80 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-500">Settings</h1>
+</div>
+
+<div class="row">
+      <!----------------------------------------------------------------------------------------------------------------------------------------Catégories d'avertissement-->
+      <div class="col-lg-12">
+            <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3" (click)="toggleCard('strikeCat')">
+
+                        <div class="row">
+                              <div class="col-lg-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Catégories d'avertissement</h6>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body p-3 border-bottom-warning" *ngIf="showStrikeCat">
+                        <table class="table table-striped label">
+                              <thead>
+                                    <tr>
+                                          <th>Nom</th>
+                                          <th>Description</th>
+                                          <th>Actif / Inactif</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    <tr *ngFor="let sc of StrikeCats" (click)="editStrike(sc)">
+                                          <!--A mettre en *ngFor-->
+                                          <td>{{sc.StrikeCat_Name}}</td>
+                                          <td>{{sc.StrikeCat_Description}}</td>
+                                          <td>{{sc.actif}}</td>
+                                    </tr>
+                              </tbody>
+                        </table>
+                        <button class="btn btn-dark float-lg-right" (click)="showAddStrikeCat = true" [disabled]="showAddStrikeCat">Ajouter</button>
+                  </div>
+
+                  <!-- Card Body -->
+                  <div class="card-body p-3" *ngIf="showAddStrikeCat">
+                        <form class="form-group" [formGroup]="StrikeCatForm" (ngSubmit)="onStrikeCatFormSubmit()">
+                              <div class="row mb-4">
+                                    <div class="col-lg-4">
+                                          <label>Nom</label>
+                                          <input class="form-control" placeholder="Nom" formControlName="StrikeCat_Name" [ngClass]="{'is-invalid' : StrikeCatSubmitted && scf.StrikeCat_Name.errors}" />
+                                          <div *ngIf="StrikeCatSubmitted && scf.StrikeCat_Name.errors" class="invalid-feedback">
+                                                <div *ngIf="scf.StrikeCat_Name.errors.required">Le nom de la catégorie est obligatoire</div>
+                                          </div>
+                                    </div>
+                              </div>
+
+                              <div class="row mb-4">
+                                    <div class="col-lg-6">
+                                          <label>Description</label>
+                                          <textarea class="form-control" rows="5" placeholder="Description" formControlName="StrikeCat_Description" [ngClass]="{'is-invalid' : StrikeCatSubmitted && scf.StrikeCat_Description.errors}"></textarea>
+                                          <div *ngIf="StrikeCatSubmitted && scf.StrikeCat_Description.errors" class="invalid-feedback">
+                                                <div *ngIf="scf.StrikeCat_Description.errors.required">La description de la catégorie est obligatoire</div>
+                                          </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                          <label>Penalité</label>
+                                          <textarea class="form-control" rows="5" placeholder="Pénalité" formControlName="StrikeCat_Penality" [ngClass]="{'is-invalid' : StrikeCatSubmitted && scf.StrikeCat_Penality.errors}"></textarea>
+                                          <div *ngIf="StrikeCatSubmitted && scf.StrikeCat_Penality.errors" class="invalid-feedback">
+                                                <div *ngIf="scf.StrikeCat_Penality.errors.required">La pénalité de la catégorie est obligatoire</div>
+                                          </div>
+                                    </div>
+                              </div>
+                              <button class="btn btn-dark float-lg-right ml-2" type="reset" (click)="onStrikeCatFormReset()">Annuler</button>
+                              <button class="btn btn-dark float-lg-right" *ngIf="!editStrikeCat">Créer</button>
+                              <button class="btn btn-dark float-lg-right" *ngIf="editStrikeCat">Modifier</button>
+                        </form>
+                        <!--if ajouter-->
+
+
+                  </div>
+
+            </div>
+      </div>
+</div>

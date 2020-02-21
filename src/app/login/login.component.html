@@ -1,0 +1,49 @@
+<div class="row" style="margin:30vh 0px">
+
+    <div class="col-lg-4 container-fluid">
+        <div class="card-body p-3">
+
+            <!-----------------------[mettre le logo TAFF]-->
+
+        </div>
+
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3" (click)="toggleCard('strikeCat')">
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Connection</h6>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card Body -->
+            <div class="card-body p-3">
+                <form class="form-group" [formGroup]="loginForm" (ngSubmit)="sendForm()">
+                    <div class="row mb-4">
+                        <div class="col-lg">
+                            <label>Utilisateur</label>
+                            <input formControlName="Emp_UserName" class="form-control" placeholder="Utilisateur" />
+                            <div *ngIf="StrikeCatSubmitted && scf.StrikeCat_Name.errors" class="invalid-feedback">
+                                <div *ngIf="scf.StrikeCat_Name.errors.required">Le nom de la catégorie est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg">
+                            <label>Mot de Passe</label>
+                            <input formControlName="Emp_PassWord" type="password" class="form-control" placeholder="Mot de Passe" />
+                            <div *ngIf="StrikeCatSubmitted && scf.StrikeCat_Name.errors" class="invalid-feedback">
+                                <div *ngIf="scf.StrikeCat_Name.errors.required">Le nom de la catégorie est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark float-lg-right ml-2">Connection</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

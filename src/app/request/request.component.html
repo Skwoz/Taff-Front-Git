@@ -1,0 +1,38 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-500">Demandes</h1>
+</div>
+
+<div class="row">
+      <div class="col">
+
+            <div class="card shadow p-0">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header">
+                        <div class="row container-fluid text-center text-gray-100">
+                              <div class="col-3" style="cursor:pointer" (click)="switchPage('conge')">
+                                    Congé
+                              </div>
+                              <div class="col-3" style="cursor:pointer" (click)="switchPage('dispo')">
+                                    Disponibilité
+                              </div>
+                              <div class="col-3" style="cursor:pointer" (click)="switchPage('remplacement')">
+                                    Remplacement
+                              </div>
+                              <div class="col-3" style="cursor:pointer" (click)="switchPage('quarts')">
+                                    Quarts à combler
+                              </div>
+                        </div>
+                  </div>
+                  <!--Publication Body-->
+                  <div class="card-body p-4">
+
+                        <app-day-off *ngIf="conge"></app-day-off>
+                        <app-disponibilities *ngIf="dispo"></app-disponibilities>
+                        <app-replacements *ngIf="remplacement"></app-replacements>
+                        <app-time-slot *ngIf="quarts"></app-time-slot>
+
+                  </div>
+            </div>
+      </div>
+</div>
+

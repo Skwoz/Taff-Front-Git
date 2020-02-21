@@ -1,0 +1,175 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-500">Settings</h1>
+</div>
+
+<div class="row">
+      <!----------------------------------------------------------------------------------------------------------------------------------------Magasin-->
+      <div class="col-lg-12">
+            <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 ">
+
+                        <div class="row">
+                              <div class="col-lg-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Magasin</h6>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body p-3 border-bottom-warning">
+                        <div class="row">
+                              <div class="col-lg-12">
+                                    <table class="table table-striped">
+                                          <thead>
+                                                <tr>
+                                                      <th>Logo</th>
+                                                      <th>Nom</th>
+                                                      <th>Adresse</th>
+                                                      <th>Téléphone</th>
+                                                      <th>Fax</th>
+                                                      <th>Couleur</th>
+                                                      <th style="text-align:center;">Inactif</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <!--A mettre en *ngFor-->
+                                                      <td><img src="/assets/img/SportsExperts.jpg" width="50" /></td>
+                                                      <td>Sports Experts</td>
+                                                      <td>705 Avenue du Pont N, Alma, QC G8B 5T6</td>
+                                                      <td>(418) 662-6513</td>
+                                                      <td>NA</td>
+                                                      <td><div style="width:100%; height:20px; background-color:#1840DD; padding:10px 0 10px 0"></div></td>
+                                                      <td style="text-align:center;"><input type="checkbox" name="magActif" value="" /></td>
+                                                </tr>
+                                                <tr>
+                                                      <!--A mettre en *ngFor-->
+                                                      <td><img src="/assets/img/SportsExperts.jpg" width="50" /></td>
+                                                      <td>Sports Experts</td>
+                                                      <td>705 Avenue du Pont N, Alma, QC G8B 5T6</td>
+                                                      <td>(418) 662-6513</td>
+                                                      <td>NA</td>
+                                                      <td><div style="width:100%; height:20px; background-color:#1840DD; padding:10px 0 10px 0"></div></td>
+                                                      <td style="text-align:center;"><input type="checkbox" name="magActif" value="" /></td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                              </div>
+                        </div>
+
+                        <button class="btn btn-dark float-lg-right">Ajouter</button>
+                  </div>
+
+                  <!-- Card Body -->
+                  <div class="card-body p-3">
+                        <form class="form-group" action="#" method="post">
+                              <div class="row m-4">
+                                    <div class="col-lg-2 align" style="text-align:center">
+
+                                          <div class="row mb-4 ">
+                                                <div class="col">
+                                                      <div style="border:solid 1px black; width:100px; height:100px; margin:0 auto"></div>
+                                                </div>
+                                          </div>
+
+                                          <div class="row mb-4">
+                                                <div class="col">
+                                                      <button class="btn btn-dark btn-small">Parcourir</button>
+                                                </div>
+                                          </div>
+                                    </div>
+
+                                    <div class="col-lg-10">
+                                          <div class="row mb-4">
+                                                <div class="col">
+                                                      <input class="form-control" type="text" name="MagName" value="" placeholder="Nom" />
+                                                </div>
+                                                <div class="col">
+                                                      <select class="form-control">
+                                                            <option value="value" selected>Ville</option>
+                                                      </select>
+                                                </div>
+                                                <div class="col">
+                                                      <input class="form-control" type="text" name="MagTel" value="" placeholder="Téléphone" />
+                                                </div>
+                                          </div>
+
+                                          <div class="row mb-4">
+                                                <div class="col">
+                                                      <input class="form-control" type="text" name="MagNoCiv" value="" placeholder="No civic" />
+                                                </div>
+                                                <div class="col">
+                                                      <select class="form-control">
+                                                            <option value="value" selected>Province</option>
+                                                      </select>
+                                                </div>
+                                                <div class="col">
+                                                      <input class="form-control" type="text" name="MagFax" value="" placeholder="Fax" />
+                                                </div>
+                                          </div>
+
+                                          <div class="row mb-4">
+                                                <div class="col">
+                                                      <input class="form-control" type="text" name="MagRue" value="" placeholder="Rue" />
+                                                </div>
+                                                <div class="col">
+                                                      <select class="form-control">
+                                                            <option value="value" selected>Pays</option>
+                                                      </select>
+                                                </div>
+                                                <div class="col">
+                                                      <select class="form-control">
+                                                            <option value="">Choisir une couleur</option>
+                                                            <option style="background-color: #9A1904;" value="red">Rouge</option>
+                                                            <option style="background-color: #96B00C;" value="green">Vert</option>
+                                                            <option style="background-color: #1840DD;" value="blue">Bleu</option>
+                                                            <option style="background-color: #DBCA05;" value="yellow">Jaune</option>
+                                                      </select>
+                                                </div>
+                                          </div>
+
+                                          <div class="row mb-4">
+                                                <div class="col-lg-4">
+                                                      <h3>Premier jour de la semaine</h3>
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">D</h3>
+                                                      <input type="checkbox" name="MagSun" value="" />
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">L</h3>
+                                                      <input type="checkbox" name="MagMon" value="" />
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">M</h3>
+                                                      <input type="checkbox" name="MagThue" value="" />
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">M</h3>
+                                                      <input type="checkbox" name="MagWed" value="" />
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">J</h3>
+                                                      <input type="checkbox" name="MagThurs" value="" />
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">V</h3>
+                                                      <input type="checkbox" name="MagFri" value="" />
+                                                </div>
+                                                <div class="col">
+                                                      <h3 class="form-check-label">S</h3>
+                                                      <input type="checkbox" name="MagSat" value="" />
+                                                </div>
+                                          </div>
+
+                                    </div>
+
+                              </div>
+                        </form>
+                        <!--if ajouter-->
+                        <button class="btn btn-dark float-lg-right">Créer</button>
+                  </div>
+
+            </div>
+      </div>
+</div>
