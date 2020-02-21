@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
+
 
 @Component({
   selector: 'app-day-off',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DayOffComponent implements OnInit {
 
-  constructor() { }
+    constructor(private app: AppComponent) { }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+
+    }
 
 }
