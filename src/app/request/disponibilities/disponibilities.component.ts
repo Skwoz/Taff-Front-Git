@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-i
+
 
 @Component({
   selector: 'app-disponibilities',
