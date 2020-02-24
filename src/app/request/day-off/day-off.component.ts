@@ -9,7 +9,9 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class DayOffComponent implements OnInit {
 
-    constructor(private app: AppComponent) { }
+    constructor(private app: AppComponent) {
+        app.dateValue = new Date();
+    }
 
    ngOnInit() {
 

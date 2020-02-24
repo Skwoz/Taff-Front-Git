@@ -26,8 +26,11 @@ import { StatusComponent } from './settings/status/status.component';
 import { StoreComponent } from './settings/store/store.component';
 import { StrikeComponent } from './settings/strike/strike.component';
 import { RequestComponent } from './request/request.component';
-import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
+import { CalendarModule, DatePickerModule, DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { PhonePipe } from './phone.pipe';
 
+export const options: Partial<IConfig> | (() => Partial<IConfig> ) = null;
 registerLocaleData(localeFr, 'fr');
 
 
@@ -51,7 +54,8 @@ registerLocaleData(localeFr, 'fr');
     StatusComponent,
     StoreComponent,
     StrikeComponent,
-    RequestComponent
+    RequestComponent,
+    PhonePipe
   ],
   imports: [
     BrowserModule,
@@ -59,9 +63,10 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CalendarModule
-    
-   
+    CalendarModule,
+    DatePickerModule,
+    DateRangePickerModule,
+    NgxMaskModule.forRoot(options)
   ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, { provide: LOCALE_ID, useValue: "fr-CA" }],

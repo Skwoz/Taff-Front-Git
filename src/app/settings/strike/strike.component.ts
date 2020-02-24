@@ -8,15 +8,20 @@ import { DataService } from 'src/app/data.service';
   styleUrls: ['./strike.component.scss']
 })
 export class StrikeComponent implements OnInit {
-    StrikeCats: Array<StrikeCategories> = new Array<StrikeCategories>();
-    StrikeCatForm: FormGroup;
-    StrikeCatSubmitted: boolean = false;
-    showStrikeCat: boolean = false;
-    showAddStrikeCat: boolean = false;
-    editStrikeCat: boolean = false;
+    mode: string;
+    ajout: boolean = false;
+    StrikeCats: Array<StrikeCategories>;
+    form: FormGroup;
+    selected: StrikeCategories;
+    new: StrikeCategories;
+    formSubmited: boolean;
 
 
     constructor(private data: DataService, private formBuilder: FormBuilder) {
+        this.buildTable();
+    }
+
+    buildTable() {
         this.data.getAll('strikeCategories').subscribe((res: Array<StrikeCategories>) => {
             this.StrikeCats = res;
             //get the active value to have a string value ( added to the class )
@@ -29,55 +34,70 @@ export class StrikeComponent implements OnInit {
             });
         });
 
-        this.StrikeCatForm = this.formBuilder.group({
+        this.form = this.formBuilder.group({
             StrikeCat_Name: ['', Validators.required],
             StrikeCat_Description: ['', Validators.required],
             StrikeCat_Penality: ['', Validators.required],
-            //StrikeCat_Innactiv: [false, Validators.required]
+            StrikeCat_Innactiv: Boolean
         })
-
     }
 
     //access to form fields
-    get scf() { return this.StrikeCatForm.controls; }
+    get scf() { return this.form.controls; }
+
+    showAddForm() {
+        this.ajout = true;
+    }
+
+    hideAddForm() {
+        this.ajout = false;
+    }
 
     onStrikeCatFormSubmit(formData) {
-        this.StrikeCatSubmitted = true;
+        this.formSubmited = true;
         //stop if the form is not valid
-        if (this.StrikeCatForm.invalid) {
+        if (this.form.invalid) {
             return;
+        } else {
+            if (this.mode == 'edit') {
+                this.selected.StrikeCat_Name = this.form.get('StrikeCat_Name').value;
+                this.selected.StrikeCat_Description = this.form.get('StrikeCat_Description').value;
+                this.selected.StrikeCat_Penality = this.form.get('StrikeCat_Penality').value;
+                this.selected.StrikeCat_Innactiv = this.form.get('StrikeCat_Innactiv').value;
+                this.data.modify('strikeCategories', this.selected.StrikeCat_ID, this.selected).subscribe(res => { this.buildTable(); this.ajout = false; });
+            }
+            if (this.mode == 'add') {
+                this.new.StrikeCat_Name = this.form.get('StrikeCat_Name').value;
+                this.new.StrikeCat_Description = this.form.get('StrikeCat_Description').value;
+                this.new.StrikeCat_Penality = this.form.get('StrikeCat_Penality').value;
+                this.new.StrikeCat_Innactiv = this.form.get('StrikeCat_Innactiv').value;
+                this.data.post('strikeCategories', this.new).subscribe(res => { this.buildTable(); this.ajout = false; });
+            }
         }
-
-        // display form values on success
-        alert('La catégorie à été soumise' + JSON.stringify(this.StrikeCatForm.value, null, 4));
-        this.onStrikeCatFormReset();
     }
 
     onStrikeCatFormReset() {
-        this.StrikeCatSubmitted = false;
-        this.showAddStrikeCat = false;
-        if (this.editStrikeCat)
-            this.editStrikeCat = false;
-        this.StrikeCatForm.reset();
+        this.form.reset();
+        this.formSubmited = false;
+        this.hideAddForm();
     }
 
-    editStrike(Strike: StrikeCategories) {
-        if (this.editStrikeCat) {
-            return;
-        } else {
-            this.showAddStrikeCat = true;
-            this.editStrikeCat = true;
-            this.StrikeCatForm.setValue({ 'StrikeCat_Name': Strike.StrikeCat_Name, 'StrikeCat_Description': Strike.StrikeCat_Description, 'StrikeCat_Penality': Strike.StrikeCat_Penality })
-        }
+    edit(Strike: StrikeCategories) {
+        this.mode = 'edit';
+        this.selected = Strike;
+        this.showAddForm();
+        this.form.setValue({ 'StrikeCat_Name': Strike.StrikeCat_Name, 'StrikeCat_Description': Strike.StrikeCat_Description, 'StrikeCat_Penality': Strike.StrikeCat_Penality, 'StrikeCat_Innactiv': Strike.StrikeCat_Innactiv });     
     }
 
-    toggleCard(card: string) {
-        switch (card) {
-            //StrikeCat
-            case 'strikeCat':
-                this.showStrikeCat = !this.showStrikeCat;
-                break;
-        }
+    add() {
+        this.mode = 'add';
+        this.showAddForm();
+        this.new = new StrikeCategories();
+        this.new.StrikeCat_Name = "";
+        this.new.StrikeCat_Description = "";
+        this.new.StrikeCat_Penality = "";
+        this.new.StrikeCat_Innactiv = false;
+        this.form.setValue({ 'StrikeCat_Name': this.new.StrikeCat_Name, 'StrikeCat_Description': this.new.StrikeCat_Description, 'StrikeCat_Penality': this.new.StrikeCat_Penality, 'StrikeCat_Innactiv': this.new.StrikeCat_Innactiv });
     }
 
   ngOnInit() {

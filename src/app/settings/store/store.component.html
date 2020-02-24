@@ -37,7 +37,7 @@
                                                       <td>{{s.Store_Name}}</td>
                                                       <td>{{s.Store_Number}} {{s.Store_Street}}, {{s.Store_City}}, {{s.Store_State}} {{s.Store_PostalCode}}</td>
                                                       <td>{{s.Store_Phone}}</td>
-                                                      <td>{{s.Store_Fax}}</td>
+                                                      <td>{{s.Store_Fax  | phone}}</td>
                                                       <td style="text-align:center;">{{s.actif}}</td>
                                                 </tr>
                                           </tbody>
@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="col">
                                                       <label>Fax</label>
-                                                      <input class="form-control" type="text" formControlName="fax" value="" placeholder="(___) ___-____" />
+                                                      <input class="form-control" type="text" formControlName="fax" value="" mask="(000) 000-0000" [showMaskTyped]="true"/>
                                                 </div>
                                           </div>
 
@@ -126,8 +126,9 @@
                                                 </div>
                                                 <div class="col">
                                                       <label>Pays</label>
-                                                      <select class="form-control">
-                                                            <option value="value" selected>{{selected.Store_Country}}</option>
+                                                      <select class="form-control" formControlName="country">
+                                                            <option [ngValue]="null" disabled>Choisir le Pays</option>
+                                                            <option [ngValue]="f.country" selected>{{selected.Store_Country}}</option>
                                                       </select>
                                                 </div>
                                                 <div class="col">

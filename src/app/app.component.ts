@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { loadCldr, L10n } from '@syncfusion/ej2-base';
-
+import { Pipe, PipeTransform } from '@angular/core';
 import { AuthentificationService } from './_services/authentification.service';
 import { User } from './_models/user';
 import { DisponibilitiesComponent } from './request/disponibilities/disponibilities.component';
@@ -22,9 +22,13 @@ export class AppComponent {
     //for calendar
     public month: number = new Date().getMonth();
     public fullYear: number = new Date().getFullYear();
-    public dateValue: Object = new Date();
-    public minDate: Date = new Date(this.fullYear, this.month, 9);
-    public maxDate: Date = new Date(this.fullYear, this.month, 15);
+    public day: number = new Date().getDay();
+    public dateValue: Date = new Date();
+    public minDate: Date = new Date(this.fullYear, this.month, this.day); // 2 semaine a l'avance
+    public maxDate: Date = new Date(this.fullYear, this.month, this.day );
+    //for the rangepicker
+    public start: Date = new Date(this.fullYear, this.month, this.day +14);
+    public end: Date = new Date();
 
     constructor(
         private router: Router,
@@ -44,6 +48,19 @@ export class AppComponent {
             'fr-CA': {
                 'calendar': {
                     today: "Aujourd'hui"
+                },
+                'datepicker': {
+                    placeholder: "Entrer une date",
+                    today: "Aujourd'hui"
+                },
+                'daterangepicker': {
+                    placeholder: "Entrer une date",
+                    applyText: "Ok",
+                    cancelText: "Annuler",
+                    selectedDays: "jours sélectionné",
+                    days: "jours",
+                    startLabel: "date de départ",
+                    endLabel:"date de fin"
                 }
             }
         });

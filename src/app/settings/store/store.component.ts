@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { format } from 'util';
 
 @Component({
   selector: 'app-store',
@@ -17,6 +18,12 @@ export class StoreComponent implements OnInit {
     selected: Store;
     new: Store;
     formSubmited: boolean;
+    phonePatern = {
+        'i': { pattern: new RegExp('\[\(0-2\)\]') },
+        '-': { pattern: new RegExp('\[-\]') },
+        's': { pattern: new RegExp('\[0-2\]') },
+        'e': { pattern: new RegExp('\[0-3\]') }
+    }
     provinces: Array<string> = ["AB", "BC", "PE", "MB", "NB", "NS", "NU", "ON", "QC", "SK", "NL"];
 
     constructor(private data: DataService, private formBuilder: FormBuilder) {
@@ -116,7 +123,7 @@ export class StoreComponent implements OnInit {
         this.showAddForm();
         this.new = new Store();
         this.new.Store_Name = "";
-        this.new.Store_Logo ="";
+        this.new.Store_Logo ="\assets\img\SportsExperts.jpg";
         this.new.Store_Number = "";
         this.new.Store_Street = "";
         this.new.Store_City = "";
