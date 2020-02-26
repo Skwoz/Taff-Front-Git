@@ -66,11 +66,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                           <label>Penalité</label>
-                                          <textarea class="form-control" rows="5" placeholder="Pénalité" formControlName="StrikeCat_Penality" [ngClass]="{'is-invalid' : formSubmited && scf.StrikeCat_Penality.errors}"></textarea>
-                                          <div *ngIf="formSubmited && scf.StrikeCat_Penality.errors" class="invalid-feedback">
-                                                <div *ngIf="scf.StrikeCat_Penality.errors.required">La pénalité de la catégorie est obligatoire</div>
-                                          </div>
-                                    </div>
+                                          <textarea class="form-control" rows="5" placeholder="Pénalité" formControlName="StrikeCat_Penality"></textarea>
+                                     </div>
                               </div>
                               <button class="btn btn-dark float-lg-right ml-4" type="reset" (click)="onStrikeCatFormReset()">Annuler</button>
                               <button class="btn btn-dark float-lg-right" >Ok</button>

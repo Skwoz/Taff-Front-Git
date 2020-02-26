@@ -36,7 +36,7 @@
                                                       <td><img src="/assets/img/SportsExperts.jpg" width="50" /></td>
                                                       <td>{{s.Store_Name}}</td>
                                                       <td>{{s.Store_Number}} {{s.Store_Street}}, {{s.Store_City}}, {{s.Store_State}} {{s.Store_PostalCode}}</td>
-                                                      <td>{{s.Store_Phone}}</td>
+                                                      <td>{{s.Store_Phone | phone}}</td>
                                                       <td>{{s.Store_Fax  | phone}}</td>
                                                       <td style="text-align:center;">{{s.actif}}</td>
                                                 </tr>
@@ -87,7 +87,7 @@
                                                 </div>
                                                 <div class="col">
                                                       <label>Téléphone</label>
-                                                      <input class="form-control" type="text" formControlName="phone" placeholder="(___) ___-____" [ngClass]="{'is-invalid' : formSubmited && f.phone.errors}" />
+                                                      <input class="form-control" type="text" formControlName="phone" mask="(000) 000-0000" [showMaskTyped]="true" [ngClass]="{'is-invalid' : formSubmited && f.phone.errors}" />
                                                       <div *ngIf="formSubmited && f.phone.errors" class="invalid-feedback">
                                                             <div *ngIf="f.phone.errors.required">Le numéro de téléphone est obligatoire</div>
                                                       </div>
@@ -97,7 +97,7 @@
                                           <div class="row mb-4">
                                                 <div class="col">
                                                       <label>No Civic</label>
-                                                      <input class="form-control" type="text" formControlName="number" value="" placeholder="No civic" [ngClass]="{'is-invalid' : formSubmited && f.number.errors}" />
+                                                      <input class="form-control" type="text" formControlName="number"  placeholder="No civic" [ngClass]="{'is-invalid' : formSubmited && f.number.errors}" />
                                                       <div *ngIf="formSubmited && f.number.errors" class="invalid-feedback">
                                                             <div *ngIf="f.number.errors.required">Le numéro civic est obligatoire</div>
                                                       </div>
@@ -105,14 +105,14 @@
                                                 <div class="col">
                                                       <label>Province</label>
                                                       <select class="form-control" formControlName="state">
-                                                            <option  [ngValue]="null" disabled>Choisir la Province</option>
-                                                            <option [ngValue]="f.state"   selected>{{selected.Store_State}}</option>
+                                                            <option  value="null" disabled>Choisir la Province</option>
+                                                            <option value="state" selected>{{selected.Store_State}}</option>
                                                             <option *ngFor="let p of provinces" [ngValue]="p">{{p}}</option>
                                                       </select>
                                                 </div>
                                                 <div class="col">
                                                       <label>Fax</label>
-                                                      <input class="form-control" type="text" formControlName="fax" value="" mask="(000) 000-0000" [showMaskTyped]="true"/>
+                                                      <input class="form-control" type="text" formControlName="fax"  mask="(000) 000-0000" [showMaskTyped]="true"/>
                                                 </div>
                                           </div>
 
@@ -127,9 +127,12 @@
                                                 <div class="col">
                                                       <label>Pays</label>
                                                       <select class="form-control" formControlName="country">
-                                                            <option [ngValue]="null" disabled>Choisir le Pays</option>
-                                                            <option [ngValue]="f.country" selected>{{selected.Store_Country}}</option>
+                                                            <option value="null" disabled>Choisir le Pays</option>
+                                                            <option value="country" selected>{{selected.Store_Country}}</option>
+                                                            <option *ngFor="let s of stores" [ngValue]="s.Store_Country">{{s.Store_Country}}</option>
+
                                                       </select>
+                                                      
                                                 </div>
                                                 <div class="col">
                                                       <label>Inactif</label><br />

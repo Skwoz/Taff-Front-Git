@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { format } from 'util';
+
 
 @Component({
   selector: 'app-store',
@@ -18,13 +17,8 @@ export class StoreComponent implements OnInit {
     selected: Store;
     new: Store;
     formSubmited: boolean;
-    phonePatern = {
-        'i': { pattern: new RegExp('\[\(0-2\)\]') },
-        '-': { pattern: new RegExp('\[-\]') },
-        's': { pattern: new RegExp('\[0-2\]') },
-        'e': { pattern: new RegExp('\[0-3\]') }
-    }
-    provinces: Array<string> = ["AB", "BC", "PE", "MB", "NB", "NS", "NU", "ON", "QC", "SK", "NL"];
+ 
+    provinces: Array<string> = ["Alberta", "Colombie Britannique", "île-du-Price-Édouard", "Manitoba", "Nouveau Brunswick", "Terre-Neuve", "Ontario", "Québec", "Saskachewan", "Labrador"];
 
     constructor(private data: DataService, private formBuilder: FormBuilder) {
         this.buildTable();
@@ -61,6 +55,7 @@ export class StoreComponent implements OnInit {
     get f() { return this.form.controls; }
 
     edit(store: Store) {
+        console.log(this.form.get('state').value);
         this.mode = 'edit';
         this.selected = store;
         this.showAddForm();
@@ -77,21 +72,22 @@ export class StoreComponent implements OnInit {
             'state': store.Store_State,
             'cp':store.Store_PostalCode
         });
-        console.log(this.selected.Store_Innactiv);
     }
 
     onFormSubmit(formData) {
         this.formSubmited = true;
 
         if (this.form.invalid) {
+            console.log(this.form.get('state').value);
             return;
         } else {
             if (this.mode == 'edit') {
                 this.selected.Store_Name = this.form.get('name').value;
-                this.selected.Store_Logo = this.form.get('logo').value;
+                this.selected.Store_Logo = null; //this.form.get('logo').value;
                 this.selected.Store_Number = this.form.get('number').value;
                 this.selected.Store_Street = this.form.get('street').value;
                 this.selected.Store_City = this.form.get('city').value;
+                //this.selected.Store_Color = this.form.get('color').value;
                 this.selected.Store_Country = this.form.get('country').value;
                 this.selected.Store_Phone = this.form.get('phone').value;
                 this.selected.Store_Fax = this.form.get('fax').value;
@@ -106,6 +102,7 @@ export class StoreComponent implements OnInit {
                 this.new.Store_Number = this.form.get('number').value;
                 this.new.Store_Street = this.form.get('street').value;
                 this.new.Store_City = this.form.get('city').value;
+                //this.selected.Store_Color = this.form.get('color').value;
                 this.new.Store_Country = this.form.get('country').value;
                 this.new.Store_Phone = this.form.get('phone').value;
                 this.new.Store_Fax = this.form.get('fax').value;
@@ -122,18 +119,7 @@ export class StoreComponent implements OnInit {
         this.form.reset();
         this.showAddForm();
         this.new = new Store();
-        this.new.Store_Name = "";
-        this.new.Store_Logo ="\assets\img\SportsExperts.jpg";
-        this.new.Store_Number = "";
-        this.new.Store_Street = "";
-        this.new.Store_City = "";
-        this.new.Store_Country = "";
-        this.new.Store_Phone = "";
-        this.new.Store_Fax = "";
-        this.new.Store_Color = "";
-        this.new.Store_Innactiv = false;
-        this.new.Store_State = "Qu�bec";
-        this.new.Store_PostalCode = "";
+       
         this.form.setValue({
             'name': this.new.Store_Name,
             'logo': this.new.Store_Logo,
@@ -147,6 +133,20 @@ export class StoreComponent implements OnInit {
             'state': this.new.Store_State,
             'cp': this.new.Store_PostalCode
         });
+
+        this.new.Store_Name = "";
+        this.new.Store_Logo = null;
+        this.new.Store_Number = "";
+        this.new.Store_Street = "";
+        this.new.Store_City = "";
+        this.new.Store_Country = "Canada";
+        this.new.Store_Phone = "";
+        this.new.Store_Fax = "";
+        this.new.Store_Color = "";
+        this.new.Store_Innactiv = false;
+        this.new.Store_State = "Québec";
+        this.new.Store_PostalCode = "";
+
     }
 
     resetForm() {
