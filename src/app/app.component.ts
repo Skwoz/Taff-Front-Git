@@ -23,12 +23,12 @@ export class AppComponent {
     public day: number = new Date().getDay();
     public hour: number = new Date().getHours();
     public dateValue: Date = new Date();
-    public minDate: Date = new Date(this.fullYear, this.month, this.day); // 2 semaine a l'avance
+    public minDate: Date = new Date(this.fullYear, this.month, this.day +14); // 2 semaine a l'avance
     public maxDate: Date = new Date(this.fullYear, this.month, this.day);
     public formatString: string = 'HH:mm'; //pour le temps
     public enableStrictMode: boolean = true;
     //for the rangepicker
-    public start: Date = new Date(this.fullYear, this.month, this.day +14);
+    public start: Date = new Date(this.fullYear, this.month +1, this.day +14);
     public end: Date = new Date();
 
     constructor(

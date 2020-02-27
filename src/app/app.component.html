@@ -17,6 +17,7 @@
         <!--photo-->
         <li class="nav-item">
 
+
             <!--<span class="mr-2 d-none d-lg-inline text-gray-500 small">Valerie Luna</span>-->
             <img class="img-profile mb-3" width="80%" style="margin:0 10%" src="assets/img/users/yo.png" onerror="this.onerror=null;this.src='assets/img/users/unknownCircle.png';" alt="Alternate Text">
         </li>
@@ -42,7 +43,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"></h6>
                     <a routerLink="mySchedule" class="collapse-item" href="week.html">Mon Horaire</a>
-                    <a routerLink="schedule" class="collapse-item" href="month.html">Horaire</a>
+                    <!--<a routerLink="schedule" class="collapse-item" href="month.html">Horaire</a>-->
+                    <a *ngIf="currentUser.FK_EmpStatus_ID==1 || currentUser.FK_EmpStatus_ID==2" routerLink="schedule" class="collapse-item" href="month.html">Horaire</a>
                 </div>
             </div>
         </li>

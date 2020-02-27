@@ -114,21 +114,27 @@ export class OpeningHoursComponent implements OnInit {
                 return;
             } else {
                 this.currentWeek.Week_Name = this.form.get('weekName').value;
-                
-                this.currentWeek.days[0].Day_StoreOpening = this.form.get('DimancheOpen').value;
-                this.currentWeek.days[0].Day_StoreClosing = this.form.get('DimancheClose').value;
-                this.currentWeek.days[1].Day_StoreOpening = this.form.get('LundiOpen').value;
-                this.currentWeek.days[1].Day_StoreClosing = this.form.get('LundiClose').value;
-                this.currentWeek.days[2].Day_StoreOpening = this.form.get('MardiOpen').value;
-                this.currentWeek.days[2].Day_StoreClosing = this.form.get('MardiClose').value;
-                this.currentWeek.days[3].Day_StoreOpening = this.form.get('MercrediOpen').value;
-                this.currentWeek.days[3].Day_StoreClosing = this.form.get('MercrediClose').value;
-                this.currentWeek.days[4].Day_StoreOpening = this.form.get('JeudiOpen').value;
-                this.currentWeek.days[4].Day_StoreClosing = this.form.get('JeudiClose').value;
-                this.currentWeek.days[5].Day_StoreOpening = this.form.get('VendrediOpen').value;
-                this.currentWeek.days[5].Day_StoreClosing = this.form.get('VendrediClose').value;
-                this.currentWeek.days[6].Day_StoreOpening = this.form.get('SamediOpen').value;
-                this.currentWeek.days[6].Day_StoreClosing = this.form.get('SamediClose').value;
+
+                this.currentWeek.days[0].Day_StoreOpening = this.decalage(this.currentWeek.days[0].Day_StoreOpening,this.form.get('DimancheOpen').value);
+                this.currentWeek.days[0].Day_StoreClosing = this.decalage(this.currentWeek.days[0].Day_StoreClosing, this.form.get('DimancheClose').value);
+
+                this.currentWeek.days[1].Day_StoreOpening = this.decalage(this.currentWeek.days[1].Day_StoreOpening, this.form.get('LundiOpen').value);
+                this.currentWeek.days[1].Day_StoreClosing = this.decalage(this.currentWeek.days[1].Day_StoreClosing, this.form.get('LundiClose').value);
+
+                this.currentWeek.days[2].Day_StoreOpening = this.decalage(this.currentWeek.days[2].Day_StoreOpening,this.form.get('MardiOpen').value);
+                this.currentWeek.days[2].Day_StoreClosing = this.decalage(this.currentWeek.days[2].Day_StoreClosing, this.form.get('MardiClose').value);
+
+                this.currentWeek.days[3].Day_StoreOpening = this.decalage(this.currentWeek.days[3].Day_StoreOpening, this.form.get('MercrediOpen').value);
+                this.currentWeek.days[3].Day_StoreClosing = this.decalage(this.currentWeek.days[3].Day_StoreClosing, this.form.get('MercrediClose').value);
+
+                this.currentWeek.days[4].Day_StoreOpening = this.decalage(this.currentWeek.days[4].Day_StoreOpening, this.form.get('JeudiOpen').value);
+                this.currentWeek.days[4].Day_StoreClosing = this.decalage(this.currentWeek.days[4].Day_StoreClosing, this.form.get('JeudiClose').value);
+
+                this.currentWeek.days[5].Day_StoreOpening = this.decalage(this.currentWeek.days[5].Day_StoreOpening , this.form.get('VendrediOpen').value);
+                this.currentWeek.days[5].Day_StoreClosing = this.decalage(this.currentWeek.days[5].Day_StoreClosing, this.form.get('VendrediClose').value);
+
+                this.currentWeek.days[6].Day_StoreOpening = this.decalage(this.currentWeek.days[6].Day_StoreOpening, this.form.get('SamediOpen').value);
+                this.currentWeek.days[6].Day_StoreClosing = this.decalage(this.currentWeek.days[6].Day_StoreClosing , this.form.get('SamediClose').value);
 
                 console.log(this.currentWeek);
 
@@ -163,7 +169,19 @@ export class OpeningHoursComponent implements OnInit {
         day.Day_Date = '2020-02-01'; //fakeDate
         this.currentWeek.days.push(day);
     }
-    
+
+    decalage(model: string, input: string) {
+        var modelDateFormat = new Date(model);
+        var inputDateFormat = new Date(input);
+        if (modelDateFormat != inputDateFormat) {
+            return new Date(inputDateFormat.getTime() - (1000 * 60 * 60 * 5));
+        }
+        else {
+            return inputDateFormat;
+        }
+
+    }
+
     resetForm() {
         this.form.reset();
         this.formSubmited = false;

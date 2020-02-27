@@ -10,9 +10,11 @@
             <div class="card-header py-3 ">
 
                 <div class="row">
+
                     <div class="col-lg-3">
                         <h6 class="m-0 font-weight-bold text-primary">Liste Employés</h6>
                     </div>
+
                     <div class="col-lg-9 mb-2">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
@@ -23,13 +25,16 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">
+
                     <div class="col-xl-3">
                         <span class="float-left ml-2">Actif(0)</span>
                         <span class="float-left ml-2">Inactif(0)</span>
                     </div>
+
                     <div class="col-xl-3">
                         <div class="form-group">
                             <select type="text" class="form-control" name="status" value="">
@@ -53,48 +58,41 @@
                             </select>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <!-- Card Body -->
-            <div class="card-body p-3" >
-                <div style="overflow-x:auto">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Magasin</th>
-                                <th>Employé</th>
-                                <th>Poste</th>
-                                <th>Departement</th>
-
-                                <th>Ville</th>
-
-                                <th>Téléphone</th>
-                                <th>Courriel</th>
-                                <th>Dernière activité</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let e of Employees" (click)="Consult(e)">
-                                <!--A mettre en *ngFor-->
-                                <td>{{e.Store_Name}}</td>
-                                <td>{{e.Emp_FirstName}} {{e.Emp_LastName}} <br /></td>
-                                <td>{{e.EmpStatus_Name}}</td>
-                                <td>
-                                    <div *ngFor="let p of e.EmpPositions">
-                                        {{p.EmpPosition_Name}}
-                                    </div>
-                                </td>
-
-                                <td>{{e.Emp_City}}</td>
-
-                                <td>{{e.Emp_1stPhone}}</td>
-                                <td>{{e.Emp_Email}}</td>
-                                <td>{{e.Emp_LastConnection}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="card-body p-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Magasin</th>
+                            <th>Employé</th>
+                            <th>Departement</th>
+                            <th>Ville</th>
+                            <th>Dernière activité</th>
+                            <th>Téléphone</th>
+                            <th>Courriel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let e of Employees" (click)="Consult(e)">
+                            <!--A mettre en *ngFor-->
+                            <td>{{e.Store_Name}}caca</td>
+                            <td>{{e.Emp_FirstName}} {{e.Emp_LastName}} <br /></td>
+                            <td>
+                                <div *ngFor="let p of e.EmpPositions">
+                                    {{p.EmpPosition_Name}}
+                                </div>
+                            </td>
+                            <td>{{e.Emp_City}}</td>
+                            <td>{{e.Emp_LastConnection}}</td>
+                            <td>{{e.Emp_1stPhone}}</td>
+                            <td>{{e.Emp_Email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <button class="btn btn-dark float-lg-right" [disabled]="consultMod" (click)="NewEmployee()">Ajouter</button>
             </div>
         </div>
@@ -109,115 +107,34 @@
                 <h6 class="m-0 font-weight-bold text-primary">Employé</h6>
             </div>
             <!-- Card Body -->
-            <div class="card-body p-4">
-                <form class="user">
-
-
+            <div class="card-body p-3">
+                <form class="user" action="/" method="post">
                     <div class="row">
-                        <div class="col">
-
-                            <!--Photo-->
-                            <label class="mt-5">Photo :</label>
-                            <div class="row mt-3">
-                                <div class="col-lg ">
-                                    <div class="row mb-4">
-                                        <div class=" col-lg px-6" style=" height:182px; width:182px; float:left;text-align:center">
-                                            <img width="200" src="assets/img/users/yo.png" onerror="this.onerror=null;this.src='assets/img/users/unknownCircle.png';" alt="Alternate Text" />
-                                        </div>
-
-                                    </div>
-                                </div>
+                        <div class="col-lg-12 mb-4">
+                            <div class="mr-2 col-lg-3" style=" height:100px; width:100px; float:left;text-align:center"><img width="100" src="assets/img/users/yo.png" onerror="this.onerror=null;this.src='assets/img/users/unknownCircle.png';" alt="Alternate Text" /></div>
+                            <div class="form-group col-lg-6 float-left">
+                                <input type="text" class="form-control" name="picture" value="" placeholder="Photo" required />
                             </div>
-                            <div class="row">
-                                <div class="input-group col">
-                                    <input type="text" class="form-control" placeholder="n/a" aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="currentEmployee.Emp_Pic" name="Emp_Pic" value="" readonly>
-                                    <div *ngIf="!readonly" class="input-group-append">
-                                        <button class="form-control btn btn-dark" type="button">
-                                            <i>Parc.</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-dark">Parcourir</button>
                         </div>
-                        <div class="col">
-                            <!--magasin-->
-                            <label class="mt-5">Magasin/s :</label><br />
-                            <div class="row mb-3">
-
-                                <div class="input-group ">
-
-                                    <div class="input-group col">
-                                        <input type="text" class="form-control" placeholder="n/a" aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="currentEmployee.Store_Name" name="Store_Name" value="" readonly>
-                                        <div *ngIf="!readonly" class="input-group-append">
-                                            <button *ngIf="!inputStoreNull" class="form-control btn btn-danger px-3" type="button">
-                                                <i>-</i>
-                                            </button>
-                                            <button *ngIf="inputStoreNull" class=" btn btn-dark px-3" type="button">
-                                                <i>+</i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <!--postes-->
-                            <label>Poste/s :</label><br />
-                            <div class="row mb-3">
-                                <div class="input-group ">
-
-                                    <div class="input-group col">
-                                        <input type="text" class="form-control" placeholder="n/a" aria-label="Search" aria-describedby="basic-addon2" [(ngModel)]="currentEmployee.EmpStatus_Name" name="EmpStatus_Name" value="" readonly>
-                                        <div *ngIf="!readonly" class="input-group-append">
-                                            <button *ngIf="!inputStatusNull" class="form-control btn btn-danger px-3" type="button">
-                                                <i>-</i>
-                                            </button>
-                                            <button *ngIf="inputStatusNull" class=" btn btn-dark px-3" type="button">
-                                                <i>+</i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <!--Départements-->
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label> Département/s : </label>
-
-
-                                        <div *ngIf="!currentEmployee.EmpPositions" class="input-group">
-                                            <input type="text" class="form-control" name="" value="" [readonly]="readonly" />
-                                        </div>
-                                        <div class="input-group" *ngFor="let pos of currentEmployee.EmpPositions; let in=index">
-                                            <input type="text" [(ngModel)]="pos.EmpPosition_Name" name="pos{{in}}" placeholder="n/a" class="form-control mb-3" value="" readonly required>
-                                            <div *ngIf="!readonly" class="input-group-append">
-                                                <button class="form-control btn btn-danger px-3" type="button">
-                                                    <i>-</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div *ngIf="!readonly" class="input-group">
-                                            <input type="text" class="form-control" name="" value="" readonly />
-                                            <div class="input-group-append">
-                                                <button class="form-control btn btn-dark px-3" type="button">
-                                                    <i>+</i>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label>Succursale :</label>
+                            <select type="text" class="form-control" name="store" value="">
+                                <option value="" selected Readonly>{{e.Store_Name}}</option>
+                            </select>
                         </div>
-
-
+                        <div class="form-group col-lg-12">
+                            <select type="text" class="form-control" name="status" value="">
+                                <option *ngFor="let e of Employees" value="" selected Readonly>{{e.EmpStatus_Name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <select type="text" class="form-control" name="position" value="">
+                                <option *ngFor="let e of EmpPositions" value="" selected Readonly></option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -230,90 +147,88 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 *ngIf="consultMod && !addMod" class="m-0 font-weight-bold text-primary">Fiche Employé</h6>
-                <h6 *ngIf="addMod" class="m-0 font-weight-bold text-primary">Nouvel Employé</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Consultation/Modification Employé</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body p-3">
-                <form class="form-group" [formGroup]="employeeForm" (ngSubmit)="onEmployeeInfoFormSub">
+                <form class="form-group">
                     <div class="form-group col-lg-12">
                         <label>Prénom :</label>
-                        <input formControlName="Emp_FirstName" [readonly]="readonly" type="text" class="form-control" name="Emp_FirstName" placeholder="Prénom" required />
+                        <input [(ngModel)]="currentEmployee.Emp_FirstName" [readonly]="readonly" type="text" class="form-control" name="Emp_FirstName" placeholder="Prénom" required />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Nom :</label>
-                        <input formControlName="Emp_LastName" [readonly]="readonly" type="text" class="form-control" name="Emp_LastName" placeholder="Nom" />
-                        <div *ngIf="StrikeCatSubmitted && scf.StrikeCat_Name.errors" class="invalid-feedback">
-                            <div *ngIf="scf.StrikeCat_Name.errors.required">Le nom de la catégorie est obligatoire</div>
-                        </div>
+                        <input [(ngModel)]="currentEmployee.Emp_LastName" [readonly]="readonly" type="text" class="form-control" name="Emp_LastName" placeholder="Nom" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>NAS :</label>
-                        <input formControlName="Emp_SocialNumber" [readonly]="readonly" type="text" class="form-control" name="Emp_SocialNumber" placeholder="NAS" />
+                        <input [(ngModel)]="currentEmployee.Emp_SocialNumber" [readonly]="readonly" type="text" class="form-control" name="Emp_SocialNumber" placeholder="NAS" />
                     </div>
                     <div class="row px-2">
                         <div class="form-group col-lg-6">
                             <label>Téléphone 1 :</label>
-                            <input formControlName="Emp_1stPhone" [readonly]="readonly" type="text" class="form-control" name="Emp_1stPhone" placeholder="Téléphone 1" />
+                            <input [(ngModel)]="currentEmployee.Emp_1stPhone" [readonly]="readonly" type="text" class="form-control" name="Emp_1stPhone" placeholder="Téléphone 1" />
                         </div>
                         <div class="form-group col-lg-6 ">
                             <label>Téléphone 2:</label>
-                            <input formControlName="Emp_2ndPhone" [readonly]="readonly" type="text" class="form-control" name="Emp_2ndPhone" placeholder="Téléphone 2" />
+                            <input [(ngModel)]="currentEmployee.Emp_2ndPhone" [readonly]="readonly" type="text" class="form-control" name="Emp_2ndPhone" placeholder="Téléphone 2" />
                         </div>
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Date d'Embauche :</label>
-                        <input formControlName="Emp_StartDate" [readonly]="readonly" type="text" class="form-control" name="Emp_StartDate" placeholder="Date d'Embauche" />
+                        <input [(ngModel)]="currentEmployee.Emp_StartDate" [readonly]="readonly" type="text" class="form-control" name="Emp_StartDate" placeholder="Date d'Embauche" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Taux Horaire :</label>
-                        <input formControlName="Emp_HourRate" [readonly]="readonly" type="text" class="form-control" name="Emp_HourRate" placeholder="Taux Horaire" />
+                        <input [(ngModel)]="currentEmployee.Emp_HourRate" [readonly]="readonly" type="text" class="form-control" name="Emp_HourRate" placeholder="Taux Horaire" />
                     </div>
                     <div class="row px-2">
                         <div class="form-group col-lg-3 ">
                             <label>Adresse :</label>
-                            <input formControlName="Emp_StreetNumber" [readonly]="readonly" type="text" class="form-control" name="Emp_StreetNumber" placeholder="No Civic" />
+                            <input [(ngModel)]="currentEmployee.Emp_StreetNumber" [readonly]="readonly" type="text" class="form-control" name="Emp_StreetNumber" placeholder="No Civic" />
                         </div>
                         <div class="form-group col-lg-9 ">
                             <label>Rue :</label>
-                            <input formControlName="Emp_StreetName" [readonly]="readonly" type="text" class="form-control" name="Emp_StreetName" placeholder="Rue" />
+                            <input [(ngModel)]="currentEmployee.Emp_StreetName" [readonly]="readonly" type="text" class="form-control" name="Emp_StreetName" placeholder="Rue" />
                         </div>
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Ville :</label>
-                        <input formControlName="Emp_City" [readonly]="readonly" type="text" class="form-control" name="Emp_City" placeholder="Ville" />
+                        <input [(ngModel)]="currentEmployee.Emp_City" [readonly]="readonly" type="text" class="form-control" name="Emp_City" placeholder="Ville" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Code Postale :</label>
-                        <input formControlName="Emp_PostalCode" [readonly]="readonly" type="text" class="form-control" name="Emp_PostalCode" placeholder="Code Postal" />
+                        <input [(ngModel)]="currentEmployee.Emp_PostalCode" [readonly]="readonly" type="text" class="form-control" name="Emp_PostalCode" placeholder="Code Postal" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Province :</label>
-                        <input formControlName="Emp_State" [readonly]="readonly" type="text" class="form-control" name="Emp_State" placeholder="Province" />
+                        <input [(ngModel)]="currentEmployee.Emp_State" [readonly]="readonly" type="text" class="form-control" name="Emp_State" placeholder="Province" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Pays :</label>
-                        <input formControlName="Emp_Country" [readonly]="readonly" type="text" class="form-control" name="Emp_Country" placeholder="Pays" />
+                        <input [(ngModel)]="currentEmployee.Emp_Country" [readonly]="readonly" type="text" class="form-control" name="Emp_Country" placeholder="Pays" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>Courriel :</label>
-                        <input formControlName="Emp_Email" [readonly]="readonly" type="text" class="form-control" name="Emp_Email" placeholder="Courriel" />
+                        <input [(ngModel)]="currentEmployee.Emp_Email" [readonly]="readonly" type="text" class="form-control" name="Emp_Email" placeholder="Courriel" />
                     </div>
                     <div class="form-group col-lg-12">
                         <label>NIP :</label>
-                        <input formControlName="Emp_NIP" [readonly]="readonly" type="text" class="form-control" name="Emp_NIP" placeholder="Nip" />
+                        <input [(ngModel)]="currentEmployee.Emp_NIP" [readonly]="readonly" type="text" class="form-control" name="Emp_NIP" placeholder="Nip" />
                     </div>
                     <div class="form-group">
                         <button class="btn btn-dark float-left" *ngIf="!addMod" (click)=" mod()"> Modifier</button>
                     </div>
                     <div class="form-group" *ngIf="addMod">
-                        <button type="submit" class="btn btn-dark float-left  ml-2"> Créer  </button>
+                        <button class="btn btn-dark float-left  ml-2" (click)="closeEditMod()"> Créer  </button>
                     </div>
                     <div class="form-group" *ngIf="!editMod || editMod">
-                        <button class="btn btn-dark float-left  ml-2" (click)="employeeFormReset()"> Annuler  </button>
+                        <button class="btn btn-dark float-left  ml-2" (click)="closeEditMod()"> Annuler  </button>
                     </div>
+
                 </form>
             </div>
         </div>
     </div>
+
 </div>
