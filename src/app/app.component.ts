@@ -20,22 +20,19 @@ loadCldr(
 export class AppComponent {
     currentUser: User;
     //for calendar
-    public month: number = new Date().getMonth();
+   /*  public month: number = new Date().getMonth();
     public fullYear: number = new Date().getFullYear();
     public day: number = new Date().getDay();
     public dateValue: Date = new Date();
-<<<<<<< HEAD
     public minDate: Date = new Date(this.fullYear, this.month, this.day +14); // 2 semaine a l'avance
     public maxDate: Date = new Date(this.fullYear, this.month, this.day);
     public formatString: string = 'HH:mm'; //pour le temps
     public enableStrictMode: boolean = true;
-=======
     public minDate: Date = new Date(this.fullYear, this.month, this.day); // 2 semaine a l'avance
     public maxDate: Date = new Date(this.fullYear, this.month, this.day );
->>>>>>> parent of 6b59afa1... final version qui marche pas et crossage de con
     //for the rangepicker
     public start: Date = new Date(this.fullYear, this.month +1, this.day +14);
-    public end: Date = new Date();
+    public end: Date = new Date(); */
 
     constructor(
         private router: Router,
