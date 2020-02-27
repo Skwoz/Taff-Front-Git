@@ -37,7 +37,7 @@ export class StrikeComponent implements OnInit {
         this.form = this.formBuilder.group({
             StrikeCat_Name: ['', Validators.required],
             StrikeCat_Description: ['', Validators.required],
-            StrikeCat_Penality:String,
+            StrikeCat_Penality: ['', Validators.required],
             StrikeCat_Innactiv: Boolean
         })
     }

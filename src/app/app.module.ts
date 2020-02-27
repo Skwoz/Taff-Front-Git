@@ -26,7 +26,7 @@ import { StatusComponent } from './settings/status/status.component';
 import { StoreComponent } from './settings/store/store.component';
 import { StrikeComponent } from './settings/strike/strike.component';
 import { RequestComponent } from './request/request.component';
-import { CalendarModule, DatePickerModule, DateRangePickerModule, TimePickerModule  } from '@syncfusion/ej2-angular-calendars';
+import { CalendarModule, DatePickerModule, DateRangePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { PhonePipe } from './phone.pipe';
 
@@ -57,21 +57,19 @@ registerLocaleData(localeFr, 'fr');
     RequestComponent,
     PhonePipe
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CalendarModule,
-        DatePickerModule,
-        TimePickerModule ,
-        DateRangePickerModule,
-        NgxMaskModule.forRoot(options)
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CalendarModule,
+    DatePickerModule,
+    DateRangePickerModule,
+    NgxMaskModule.forRoot(options)
+  ],
     providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }, { provide: LOCALE_ID, useValue: "fr-CA" }],
-    bootstrap: [AppComponent]
+  bootstrap: [AppComponent]
 })
-
 export class AppModule { }

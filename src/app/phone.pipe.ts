@@ -6,10 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PhonePipe implements PipeTransform {
 
     transform(value: string): any {
-        if (value != "" && value != "() -" && value != null) {
-            return '(' + value.substr(0, 3) + ') ' + value.substr(3, 3) + '-' + value.substr(6, 4);
-        }
-        
+        return '(' + value.substr(0, 3) + ') ' + value.substr(3, 3) + '-' + value.substr(6, 4) ;
     }
 
 }

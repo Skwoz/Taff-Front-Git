@@ -8,6 +8,7 @@
             <div class="card shadow mb-4">
                   <!-- Card Header - Dropdown -->
                   <div class="card-header py-3 ">
+
                         <div class="row">
                               <div class="col-lg-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Heures d'ouverture</h6>
@@ -15,98 +16,353 @@
                         </div>
                   </div>
 
-                  <div class="card-body p-3 border-bottom-warning">
-                        <div class="row m-4">
-                              <div class="col-lg-12 ">
-                                    <table class="table table-striped">
-                                          <thead>
-                                                <tr>
-                                                      <th>Nom</th>
-                                                      <th>Inactif / Innactif</th>
-                                                </tr>
-                                          </thead>
-                                          <tbody>
-                                                <tr *ngFor="let w of weeks" (click)="edit(w)">
-                                                      <td>{{w.Week_Name}}</td>
-                                                      <td>{{w.actif}}</td>
-                                                </tr>
-                                          </tbody>
-                                    </table>
-                              </div>
-                        </div>
-                        <div class="row">
-                              <div class="col-lg-12">
-                                    <button class="btn btn-dark btn-small float-right" (click)="add()">Ajouter</button>
-                              </div>
-                        </div>
-                  </div>
-            
-            <!-- Card Body -->
-                  <div class="card-body p-3" *ngIf="ajout">
+
+                  <!-- Card Body -->
+                  <div class="card-body p-3">
                         <div class="row m-4">
                               <div class="col-lg-12">
-                                    <form class="form-group" [formGroup]="form" (ngSubmit)="onFormSubmit()">
-                                          <div class="row mb-4">
-                                                <div class="col-lg-4">
-                                                      <input class="form-control" type="text" formControlName="weekName" value="" placeholder="Nom" />
-                                                </div>
+
+                                    <div class="row mb-4">
+                                          <div class="col-lg-4">
+
+                                                <input class="form-control" type="text" name="HOName" value="" placeholder="Nom" />
+
                                           </div>
+                                    </div>
 
-                                          <!--WeekDays-->
-                                          <div class="row pt-3">
-                                                <!--dimanche-->
-                                                <div class="col mb-4" *ngFor=" let d of currentWeek.days;let i = index">
-                                                      <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
-                                                            <div class="card-body">
-                                                                  <div class="row no-gutters align-items-center">
-                                                                        <div class="col mr-2">
-                                                                              <!--day format-->
-                                                                              <div class="row">
-                                                                                    <div class="col-lg-12">
-                                                                                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{d.Day_WeekDay}}</div>
-                                                                                    </div>
+                                    <!--WeekDays-->
+                                    <div class="row pt-3">
+                                          <!--dimanche-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Dimanche</div>
                                                                               </div>
-                                                                              <!-- Divider -->
-                                                                              <hr class="sidebar-divider">
-
-                                                                              <!--les quart de travail-->
-                                                                              <!--AM-->
-                                                                              <div class="row mb-2">
-                                                                                    <div class="col-lg-12">
-                                                                                          <h5>Ouverture</h5>
-                                                                                          <!--[(value)]="{{d.Day_StoreOpening}}"-->
-                                                                                          <ejs-timepicker formControlName="{{d.Day_WeekDay}}Open" locale='fr-CA' [format]='formatString' [step]='interval'></ejs-timepicker>
-                                                                                    </div>
-                                                                              </div>
-                                                                              <!-- Divider -->
-                                                                              <hr class="sidebar-divider">
-
-                                                                              <!--PM-->
-                                                                              <div class="row mb-2">
-                                                                                    <div class="col-lg-12">
-                                                                                          <h5>Fermeture</h5>
-                                                                                          <!--[(value)]="{{d.Day_StoreClosing}}"-->
-                                                                                          <ejs-timepicker formControlName="{{d.Day_WeekDay}}Close" locale='fr-CA' [format]='formatString' [step]='interval'></ejs-timepicker>
-                                                                                    </div>
-                                                                              </div>
-                                                                              <!-- Divider -->
-                                                                              <hr class="sidebar-divider">
                                                                         </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="17:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
                                                                   </div>
                                                             </div>
                                                       </div>
                                                 </div>
                                           </div>
-                                          <div class="row">
-                                                <div class="col-lg-12">
-                                                      <button class="btn btn-dark btn-small float-right" (click)="resetForm()">Annuler</button>
-                                                      <button class="btn btn-dark btn-small float-right mr-4">Ok</button>
+                                          <!--Lundi-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Lundi</div>
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="17:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+
+
+                                                                  </div>
+                                                            </div>
+                                                      </div>
                                                 </div>
                                           </div>
-                                    </form>
+
+                                          <!--Mardi-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mardi</div>
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="17:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <!--Mercredi-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mercredi</div>
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="17:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <!--Jeudi-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jeudi</div>
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="21:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <!--Vendredi-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Vendredi</div>
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="21:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                          <!--Samedi-->
+                                          <div class="col mb-4">
+                                                <div class="card border-left-warning shadow h-100 py-2" style="height:auto;">
+                                                      <div class="card-body">
+                                                            <div class="row no-gutters align-items-center">
+                                                                  <div class="col mr-2">
+                                                                        <!--day format-->
+                                                                        <div class="row">
+                                                                              <div class="col-lg-12">
+                                                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Samedi</div>
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--les quart de travail-->
+                                                                        <!--AM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Ouverture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="8:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+
+                                                                        <!--PM-->
+                                                                        <div class="row mb-2">
+                                                                              <div class="col-lg-12">
+                                                                                    <h5>Fermeture</h5>
+                                                                                    <input class="form-control" type="text" name="" value="" placeholder="21:00" />
+                                                                              </div>
+                                                                        </div>
+                                                                        <!-- Divider -->
+                                                                        <hr class="sidebar-divider">
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                    </div>
+                                    <button class="btn btn-dark float-lg-right">Sauvegarder</button>
+                              </div>
+                        </div>
+
+                        <div class="row m-4">
+                              <div class="col-lg-10 ">
+                                    <form class="form-group m-0" action="#" method="post"></form>
+                                    <label class="col-form-label text-dark container-fluid bg-gradient-warning">Heures d'ouvertures</label>
+                                    <table class="table table-striped">
+                                          <thead>
+                                                <tr>
+                                                      <th>No</th>
+                                                      <th>Nom</th>
+                                                      <th>Inactif</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td>1</td>
+                                                      <td>Regulier</td>
+                                                      <td><input type="checkbox" name="HOActif" value="" /></td>
+                                                </tr>
+                                                <tr>
+                                                      <td>2</td>
+                                                      <td>Estival</td>
+                                                      <td><input type="checkbox" name="HOActif" value="" /></td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                              </div>
+                              <div class="col-lg-2">
+                                    <div class="row mb-4">
+                                          <div class="col">
+                                                <button class="btn btn-dark btn-small">Nouveau</button>
+                                          </div>
+                                    </div>
+                                    <div class="row mb-4">
+                                          <div class="col">
+                                                <button class="btn btn-dark btn-small">Activer / Désactiver</button>
+                                          </div>
+                                    </div>
                               </div>
                         </div>
                   </div>
+
             </div>
       </div>
 </div>
